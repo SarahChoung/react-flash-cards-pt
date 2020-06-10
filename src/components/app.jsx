@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import ViewCards from './view-cards';
-import ReviewCards from './review-cards';
+import Review from './review-cards';
 import CreateCard from './create-card';
-
-// const AppContext = React.CreateContext('whatever')
+import Nav from './nav';
+import {AppContext} from './app-context';
 
 class App extends React.Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class App extends React.Component {
       case 'create-card':
         return <CreateCard />;
       case 'review-cards':
-        return <ReviewCards />;
+        return <Review />;
       case 'view-cards':
         return <ViewCards />;
       default:
@@ -36,8 +36,14 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {this.getView()}
+        <AppContext.Provider value={this.setView}>
+          <Nav />
+        </AppContext.Provider>
+        <div className = "text-center">
+          {this.getView()}
+        </div>
       </div>
+
     );
   }
 }
