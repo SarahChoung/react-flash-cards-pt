@@ -1,9 +1,9 @@
 import React, { createContext } from 'react';
+import { AppContext } from './app-context';
 import ViewCards from './view-cards';
 import Review from './review-cards';
 import CreateCard from './create-card';
 import Nav from './nav';
-// import {AppContext} from './app-context';
 
 class App extends React.Component {
   constructor(props) {
@@ -52,7 +52,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Nav setView = {this.setView}/>
+        <AppContext.Provider value={{ setView: this.setView }}>
+          <Nav />
+        </AppContext.Provider>
         <div className="text-center">
           {this.getView()}
         </div>
