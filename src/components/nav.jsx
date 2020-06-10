@@ -4,7 +4,7 @@ import { AppContext } from './app-context'
 function Nav() {
   return (
     <AppContext.Consumer>
-      {({setView})=> (
+      {({viewState, setView})=> (
         <nav className="navbar">
           <div className="nav navbar-right ml-auto">
             <button

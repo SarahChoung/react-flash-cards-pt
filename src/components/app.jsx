@@ -13,7 +13,6 @@ class App extends React.Component {
     }
     this.setView = this.setView.bind(this)
     this.getView = this.getView.bind(this)
-
   }
 
   setView(event) {
@@ -52,7 +51,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <AppContext.Provider value={{ setView: this.setView }}>
+        <AppContext.Provider value={{
+            viewState: this.state.view,
+            setView: this.setView
+             }}>
           <Nav />
         </AppContext.Provider>
         <div className="text-center">
