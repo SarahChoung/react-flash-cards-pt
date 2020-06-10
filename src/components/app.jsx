@@ -3,7 +3,7 @@ import ViewCards from './view-cards';
 import Review from './review-cards';
 import CreateCard from './create-card';
 import Nav from './nav';
-import {AppContext} from './app-context';
+// import {AppContext} from './app-context';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,16 +11,32 @@ class App extends React.Component {
     this.state = {
       view: 'view-cards'
     }
+    this.setView = this.setView.bind(this)
+    this.getView = this.getView.bind(this)
+
   }
 
-  setView(viewState) {
+  setView(event) {
+    const buttonName = event.target.textContent
+    let viewState = null;
+    switch (buttonName) {
+      case 'Create Card':
+        viewState = 'create-card';
+        break
+      case 'Review':
+        viewState = 'review-cards';
+        break
+      case 'View Cards':
+        viewState = 'view-cards'
+        break
+    }
     this.setState({
       view: viewState
     })
   }
 
   getView() {
-    switch(this.state.view) {
+    switch (this.state.view) {
       case 'create-card':
         return <CreateCard />;
       case 'review-cards':
@@ -36,10 +52,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <AppContext.Provider value={this.setView}>
-          <Nav />
-        </AppContext.Provider>
-        <div className = "text-center">
+        <Nav setView = {this.setView}/>
+        <div className="text-center">
           {this.getView()}
         </div>
       </div>
