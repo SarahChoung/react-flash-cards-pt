@@ -4,9 +4,7 @@
   "description": "The description should be A Flash Card App built with React.js.",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack --mode=production",
-    "watch": "webpack --watch --mode=development  --devtool=sourcemap"
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
